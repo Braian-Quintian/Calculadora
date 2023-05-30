@@ -33,6 +33,67 @@ switch ($operacion) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+
+    <style>
+        .todo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(#141e30, #243b55);
+            height: 100vh;
+        }
+
+        .child {
+            margin: auto;
+            color: white;
+        }
+
+
+        .calc-container {
+            margin: auto;
+            width: 350px;
+            height: auto;
+            padding: 35px;
+            background-color: #d9d9d9;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #243b55;
+            background-color: #141e30;
+        }
+
+        .display {
+            padding: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: black;
+            width: 100%;
+        }
+
+        .button {
+            background-color: #e6e6e6;
+            color: #333;
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .number {
+            background-color: #f2f2f2;
+        }
+
+        .operator {
+            background-color: #f29002;
+            color: #fff;
+        }
+
+        .equal {
+            background-color: #66bb6a;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -50,16 +111,8 @@ switch ($operacion) {
                 </div>
                 <form method="POST">
                     <label for="num1">Número 1:</label><br>
-                    <button type="button" value="1" name="num1">1</button>
-                    <button type="button" value="2" name="num1">2</button>
-                    <button type="button" value="3" name="num1">3</button><br>
-                    <button type="button" value="4" name="num1">4</button>
-                    <button type="button" value="5" name="num1">5</button>
-                    <button type="button" value="6" name="num1">6</button><br>
-                    <button type="button" value="7" name="num1">7</button>
-                    <button type="button" value="8" name="num1">8</button>
-                    <button type="button" value="9" name="num1">9</button><br><br>
-                    <label for="num2">Número 2:</label>
+                    <input type="number" name="num1" required><br><br>
+                    <label for="num2">Número 2:</label><br>
                     <input type="number" name="num2" required><br><br>
                     <input type="radio" name="operacion" value="+" checked>
                     <label for="suma">Suma</label><br>
