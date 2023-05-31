@@ -1,30 +1,3 @@
-<?php
-$resultado = "";
-$num1 = $_POST['num1'];
-$num2 = $_POST['num2'];
-$operacion = $_POST['operacion'];
-
-switch ($operacion) {
-    case '+':
-        $resultado = $num1 + $num2;
-        break;
-    case '-':
-        $resultado = $num1 - $num2;
-        break;
-    case '*':
-        $resultado = $num1 * $num2;
-        break;
-    case '/':
-        if ($num2 == 0) {
-            $resultado = "No se puede dividir entre 0";
-        } else {
-            $resultado = $num1 / $num2;
-        }
-        break;
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -33,96 +6,36 @@ switch ($operacion) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
-
-    <style>
-        .todo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(#141e30, #243b55);
-            height: 100vh;
-        }
-
-        .child {
-            margin: auto;
-            color: white;
-        }
-
-
-        .calc-container {
-            margin: auto;
-            width: 350px;
-            height: auto;
-            padding: 35px;
-            background-color: #d9d9d9;
-            border-radius: 10px;
-            box-shadow: 0 0 5px #243b55;
-            background-color: #141e30;
-        }
-
-        .display {
-            padding: 5px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: black;
-            width: 100%;
-        }
-
-        .button {
-            background-color: #e6e6e6;
-            color: #333;
-            border-radius: 5px;
-            border: none;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .number {
-            background-color: #f2f2f2;
-        }
-
-        .operator {
-            background-color: #f29002;
-            color: #fff;
-        }
-
-        .equal {
-            background-color: #66bb6a;
-            color: #fff;
-        }
-    </style>
 </head>
+
 
 <body>
     <div class="todo">
         <div class="child">
             <div class="calc-container">
-                <div class="display">
-                    <?php
-                    if (!empty($resultado)) {
-                        echo  "$num1 $operacion $num2 = $resultado";
-                    } else {
-                        echo "Introduce los números y la operación a realizar";
-                    }
-                    ?>
-                </div>
                 <form method="POST">
-                    <label for="num1">Número 1:</label><br>
-                    <input type="number" name="num1" required><br><br>
-                    <label for="num2">Número 2:</label><br>
-                    <input type="number" name="num2" required><br><br>
-                    <input type="radio" name="operacion" value="+" checked>
-                    <label for="suma">Suma</label><br>
-                    <input type="radio" name="operacion" value="-">
-                    <label for="resta">Resta</label><br>
-                    <input type="radio" name="operacion" value="*">
-                    <label for="multiplicacion">Multiplicación</label><br>
-                    <input type="radio" name="operacion" value="/">
-                    <label for="division">División</label><br><br>
-                    <input type="submit" value="Calcular">
+                    <div class="btn">
+                        <input class="display" type="text" name="resultado" value="<?php echo isset($_SESSION['num1']) ? $_SESSION['num1'] : '0'; ?>" readonly><br>
+                        <button type="submit" name="numero" value="7">7</button>
+                        <button type="submit" name="numero" value="8">8</button>
+                        <button type="submit" name="numero" value="9">9</button>
+                        <button type="submit" name="numero" value="/">/</button><br>
+                        <button type="submit" name="numero" value="4">4</button>
+                        <button type="submit" name="numero" value="5">5</button>
+                        <button type="submit" name="numero" value="6">6</button>
+                        <button type="submit" name="numero" value="*">*</button><br>
+                        <button type="submit" name="numero" value="1">1</button>
+                        <button type="submit" name="numero" value="2">2</button>
+                        <button type="submit" name="numero" value="3">3</button>
+                        <button type="submit" name="numero" value="-">-</button><br>
+                        <button type="submit" name="numero" value="0">0</button>
+                        <button type="submit" name="numero" value=",">,</button>
+                        <button type="submit" name="numero" value="%">%</button>
+                        <button type="submit" name="numero" value="+">+</button><br>
+                        <button type="submit" name="numero" value="←">←</button>
+                        <button type="submit" name="numero" value="c">c</button>
+                        <button type="submit" name="numero" value="=">=</button>
+                    </div>
                 </form>
             </div>
         </div>
