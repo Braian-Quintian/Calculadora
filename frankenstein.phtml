@@ -1,208 +1,208 @@
 <?php
-session_start();
-if (isset($_POST['numero'])) {
-    switch ($_POST['numero']) {
-        case "c":
-            $_SESSION['num1'] = null;
-            $_SESSION['operacion'] = null;
-            break;
-        case "←":
-            $_SESSION['num1'] = substr($_SESSION['num1'], 0, -1);
-            break;
-        case "+":
-        case "-":
-        case "*":
-        case "/":
-            if (isset($_SESSION['num1'])) {
-                $_SESSION['operacion'] = $_POST['numero'];
-                $_SESSION['num2'] = $_SESSION['num1'];
+    session_start();
+    if (isset($_POST['numero'])) {
+        switch ($_POST['numero']) {
+            case "c":
                 $_SESSION['num1'] = null;
-            }
-            break;
-        case "=":
-            if (isset($_SESSION['num1']) && isset($_SESSION['operacion']) && isset($_SESSION['num2'])) {
-                $num1 = floatval($_SESSION['num2']);
-                $num2 = floatval($_SESSION['num1']);
-                $operacion = $_SESSION['operacion'];
-
-                if ($operacion == '/' && $num2 == 0) {
-                    $_SESSION['num1'] = 'Error: división entre cero';
-                } else {
-                    switch ($operacion) {
-                        case "+":
-                            $_SESSION['num1'] = $num1 + $num2;
-                            break;
-                        case "-":
-                            $_SESSION['num1'] = $num1 - $num2;
-                            break;
-                        case "*":
-                            $_SESSION['num1'] = $num1 * $num2;
-                            break;
-                        case "/":
-                            $_SESSION['num1'] = $num1 / $num2;
-                            break;
-                    }
-                }
-
-                $_SESSION['num2'] = null;
                 $_SESSION['operacion'] = null;
-            }
-            break;
-        default:
-            if (isset($_SESSION['num1'])) {
-                $_SESSION['num1'] .= $_POST['numero'];
-            } else {
-                $_SESSION['num1'] = $_POST['numero'];
-            }
-            break;
+                break;
+            case "←":
+                $_SESSION['num1'] = substr($_SESSION['num1'], 0, -1);
+                break;
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+                if (isset($_SESSION['num1'])) {
+                    $_SESSION['operacion'] = $_POST['numero'];
+                    $_SESSION['num2'] = $_SESSION['num1'];
+                    $_SESSION['num1'] = null;
+                }
+                break;
+            case "=":
+                if (isset($_SESSION['num1']) && isset($_SESSION['operacion']) && isset($_SESSION['num2'])) {
+                    $num1 = floatval($_SESSION['num2']);
+                    $num2 = floatval($_SESSION['num1']);
+                    $operacion = $_SESSION['operacion'];
+
+                    if ($operacion == '/' && $num2 == 0) {
+                        $_SESSION['num1'] = 'Error: división entre cero';
+                    } else {
+                        switch ($operacion) {
+                            case "+":
+                                $_SESSION['num1'] = $num1 + $num2;
+                                break;
+                            case "-":
+                                $_SESSION['num1'] = $num1 - $num2;
+                                break;
+                            case "*":
+                                $_SESSION['num1'] = $num1 * $num2;
+                                break;
+                            case "/":
+                                $_SESSION['num1'] = $num1 / $num2;
+                                break;
+                        }
+                    }
+
+                    $_SESSION['num2'] = null;
+                    $_SESSION['operacion'] = null;
+                }
+                break;
+            default:
+                if (isset($_SESSION['num1'])) {
+                    $_SESSION['num1'] .= $_POST['numero'];
+                } else {
+                    $_SESSION['num1'] = $_POST['numero'];
+                }
+                break;
+        }
     }
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-</head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Roboto', sans-serif;
-    }
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculadora</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
 
-    .todo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(#141e30, #243b55);
-        height: 100vh;
-    }
+        .todo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(#141e30, #243b55);
+            height: 100vh;
+        }
 
-    .child {
-        margin: auto;
-        color: white;
-    }
+        .child {
+            margin: auto;
+            color: white;
+        }
 
-    .calc-container {
-        margin: auto;
-        width: 410px;
-        height: auto;
-        padding: 35px;
-        background-color: #d9d9d9;
-        border-radius: 10px;
-        box-shadow: 0 0 5px #243b55;
-        background-color: #141e30;
-    }
+        .calc-container {
+            margin: auto;
+            width: 410px;
+            height: auto;
+            padding: 35px;
+            background-color: #d9d9d9;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #243b55;
+            background-color: #141e30;
+        }
 
-    .button {
-        background-color: #e6e6e6;
-        color: #333;
-        border-radius: 5px;
-        border: none;
-        padding: 10px;
-        margin: 5px;
-        cursor: pointer;
-        font-size: 20px;
-    }
+        .button {
+            background-color: #e6e6e6;
+            color: #333;
+            border-radius: 5px;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
 
-    .number {
-        background-color: #f2f2f2;
-    }
+        .number {
+            background-color: #f2f2f2;
+        }
 
-    .operator {
-        background-color: #f29002;
-        color: #fff;
-    }
+        .operator {
+            background-color: #f29002;
+            color: #fff;
+        }
 
-    .equal {
-        background-color: #66bb6a;
-        color: #fff;
-    }
+        .equal {
+            background-color: #66bb6a;
+            color: #fff;
+        }
 
-    button {
-        width: 50px;
-        height: 50px;
-        border-radius: 5px;
-        border: 1px solid black;
-        background-color: #f2f2f2;
-        font-size: 20px;
-        font-weight: bold;
-        margin: 5px;
-    }
+        button {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color: #f2f2f2;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px;
+        }
 
-    .display {
-        width: 100%;
-        height: 50px;
-        border-radius: 5px;
-        border: 1px solid black;
-        background-color: #f2f2f2;
-        font-size: 20px;
-        font-weight: bold;
-        margin: 5px;
-        text-align: right;
-        padding-right: 10px;
-    }
+        .display {
+            width: 100%;
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color: #f2f2f2;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px;
+            text-align: right;
+            padding-right: 10px;
+        }
 
-    .display:focus {
-        outline: none;
-    }
+        .display:focus {
+            outline: none;
+        }
 
-    .btn {
-        width: 100%;
-        padding: 40px;
-        border-radius: 10px;
-        margin: auto;
-        display: flex;
-        background-color: black;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
+        .btn {
+            width: 100%;
+            padding: 40px;
+            border-radius: 10px;
+            margin: auto;
+            display: flex;
+            background-color: black;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .igual {
-        background-color: #66bb6a;
-        width: 100%;
-    }
-</style>
+        .igual {
+            background-color: #66bb6a;
+            width: 100%;
+        }
+    </style>
 
 
-<body>
-    <div class="todo">
-        <div class="child">
-            <div class="calc-container">
-                <form method="POST">
-                    <div class="btn">
-                        <input class="display" type="text" name="resultado" value="<?php echo isset($_SESSION['num1']) ? $_SESSION['num1'] : '0'; ?>" readonly><br>
-                        <div class="botones">
-                            <button type="submit" name="numero" value="7">7</button>
-                            <button type="submit" name="numero" value="8">8</button>
-                            <button type="submit" name="numero" value="9">9</button>
-                            <button type="submit" name="numero" value="/">/</button><br>
-                            <button type="submit" name="numero" value="4">4</button>
-                            <button type="submit" name="numero" value="5">5</button>
-                            <button type="submit" name="numero" value="6">6</button>
-                            <button type="submit" name="numero" value="*">*</button><br>
-                            <button type="submit" name="numero" value="1">1</button>
-                            <button type="submit" name="numero" value="2">2</button>
-                            <button type="submit" name="numero" value="3">3</button>
-                            <button type="submit" name="numero" value="-">-</button><br>
-                            <button type="submit" name="numero" value="0">0</button>
-                            <button type="submit" name="numero" value="c">c</button>
-                            <button type="submit" name="numero" value="←">←</button>
-                            <button type="submit" name="numero" value="+">+</button><br>
-                            <button class="igual" type="submit" name="numero" value="=">=</button>
+    <body>
+        <div class="todo">
+            <div class="child">
+                <div class="calc-container">
+                    <form method="POST">
+                        <div class="btn">
+                            <input class="display" type="text" name="resultado" value="<?php echo isset($_SESSION['num1']) ? $_SESSION['num1'] : '0'; ?>" readonly><br>
+                            <div class="botones">
+                                <button type="submit" name="numero" value="7">7</button>
+                                <button type="submit" name="numero" value="8">8</button>
+                                <button type="submit" name="numero" value="9">9</button>
+                                <button type="submit" name="numero" value="/">/</button><br>
+                                <button type="submit" name="numero" value="4">4</button>
+                                <button type="submit" name="numero" value="5">5</button>
+                                <button type="submit" name="numero" value="6">6</button>
+                                <button type="submit" name="numero" value="*">*</button><br>
+                                <button type="submit" name="numero" value="1">1</button>
+                                <button type="submit" name="numero" value="2">2</button>
+                                <button type="submit" name="numero" value="3">3</button>
+                                <button type="submit" name="numero" value="-">-</button><br>
+                                <button type="submit" name="numero" value="0">0</button>
+                                <button type="submit" name="numero" value="c">c</button>
+                                <button type="submit" name="numero" value="←">←</button>
+                                <button type="submit" name="numero" value="+">+</button><br>
+                                <button class="igual" type="submit" name="numero" value="=">=</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 
 </html>
