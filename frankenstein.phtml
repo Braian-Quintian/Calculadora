@@ -1,3 +1,64 @@
+<?php
+session_start();
+if (isset($_POST['numero'])) {
+    switch ($_POST['numero']) {
+        case "c":
+            $_SESSION['num1'] = null;
+            $_SESSION['operacion'] = null;
+            break;
+        case "←":
+            $_SESSION['num1'] = substr($_SESSION['num1'], 0, -1);
+            break;
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+        case "%":
+            if (isset($_SESSION['num1'])) {
+                $_SESSION['operacion'] = $_POST['numero'];
+                $_SESSION['num2'] = $_SESSION['num1'];
+                $_SESSION['num1'] = null;
+            }
+            break;
+        case "=":
+            if (isset($_SESSION['num1']) && isset($_SESSION['operacion']) && isset($_SESSION['num2'])) {
+                $num1 = floatval($_SESSION['num2']);
+                $num2 = floatval($_SESSION['num1']);
+                $operacion = $_SESSION['operacion'];
+
+                switch ($operacion) {
+                    case "+":
+                        $_SESSION['num1'] = $num1 + $num2;
+                        break;
+                    case "-":
+                        $_SESSION['num1'] = $num1 - $num2;
+                        break;
+                    case "*":
+                        $_SESSION['num1'] = $num1 * $num2;
+                        break;
+                    case "/":
+                        $_SESSION['num1'] = $num1 / $num2;
+                        break;
+                    case "%":
+                        $_SESSION['num1'] = $num1 % $num2;
+                        break;
+                }
+                $_SESSION['num2'] = null;
+                $_SESSION['operacion'] = null;
+            }
+            break;
+        default:
+            if (isset($_SESSION['num1'])) {
+                $_SESSION['num1'] .= $_POST['numero'];
+            } else {
+                $_SESSION['num1'] = $_POST['numero'];
+            }
+            break;
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
