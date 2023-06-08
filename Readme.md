@@ -1,11 +1,6 @@
 # Calculadora
 
-Este es un simple programa de calculadora desarrollado en PHP. Permite realizar operaciones aritméticas básicas como suma, resta, multiplicación y división. A continuación se proporciona una guía para usar esta calculadora.
-
-## Requisitos
-
-- Servidor web que admita PHP (por ejemplo, Apache, Nginx, etc.).
-- PHP instalado en el servidor.
+Este es un simple programa de calculadora desarrollado en PHP. Permite realizar operaciones aritméticas básicas como suma, resta, multiplicación y división.
 
 ## Instrucciones de uso
 
@@ -31,10 +26,9 @@ A continuación se presenta un ejemplo de cómo usar la calculadora:
 1. En la pantalla de visualización, aparece "0" como valor inicial.
 2. Haz clic en los botones numéricos para ingresar los números deseados. Por ejemplo, haz clic en "7", "5" y "9" para ingresar el número 759.
 3. Selecciona una operación aritmética haciendo clic en los botones correspondientes. Por ejemplo, haz clic en el botón de multiplicación (*) para seleccionar la multiplicación como operación.
-4. Continúa ingresando números y seleccionando operaciones según sea necesario.
+4. (SOLO PUEDES HACER UNA OPERACIÓN A LA VEZ)
 5. Para calcular el resultado, haz clic en el botón de igual (=).
 6. El resultado de la operación se mostrará en la pantalla de visualización.
 
-Recuerda que puedes utilizar el botón de borrado (←) para corregir cualquier error y el botón de borrado completo (c) para reiniciar la calculadora y comenzar de nuevo.
 
-¡Disfruta usando la calculadora! Si tienes alguna pregunta, no dudes en consultar la documentación de PHP o buscar ayuda en línea.
+Recuerda que puedes utilizar el botón de borrado (←) para corregir cualquier error y el botón de borrado completo (c) para reiniciar la calculadora y comenzar de nuevo.
